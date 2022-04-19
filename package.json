@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:watch": "jest --watch",
-    "analyze-prod-build": "ng build --configuration=production --stats-json && webpack-bundle-analyzer dist/pochta-global-frontend/stats.json",
+    "analyze-prod-build": "ng build --configuration=production --stats-json && webpack-bundle-analyzer dist/reznaya-utochka/browser/stats.json",
     "dev:ssr": "ng run reznaya-utochka:serve-ssr",
     "serve:ssr": "node dist/reznaya-utochka/server/main.js",
     "build:ssr": "ng build && ng run reznaya-utochka:server",

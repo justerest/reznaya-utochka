@@ -1,9 +1,24 @@
 :host {
   display: block;
-  margin: auto;
   max-width: 760px;
+  margin: auto;
+  padding: 1em;
 }
 
 .title {
+  margin-bottom: 0.25rem;
+}
+
+.logo {
+  margin: 1rem 0 0;
+  width: 480px;
+  max-width: 100%;
+}
+
+section {
+  margin: 2rem 0;
+}
+
+.contact-list li {
   margin: 1rem 0;
 }

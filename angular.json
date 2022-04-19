@@ -63,6 +63,8 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/reznaya-utochka/",
+              "outputPath": "docs",
               "budgets": [
                 {
                   "type": "initial",
