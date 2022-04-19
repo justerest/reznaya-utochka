@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "cb9f158c-5144-4f77-8f79-7fb18972a2ac"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -42,7 +45,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/reznaya-utochka",
+            "outputPath": "dist/reznaya-utochka/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -125,6 +128,65 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/reznaya-utochka/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "reznaya-utochka:build:development",
+              "serverTarget": "reznaya-utochka:server:development"
+            },
+            "production": {
+              "browserTarget": "reznaya-utochka:build:production",
+              "serverTarget": "reznaya-utochka:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "reznaya-utochka:build:production",
+              "serverTarget": "reznaya-utochka:server:production"
+            },
+            "development": {
+              "browserTarget": "reznaya-utochka:build:development",
+              "serverTarget": "reznaya-utochka:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
