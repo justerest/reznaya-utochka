@@ -5,30 +5,53 @@
   padding: 1em;
 }
 
-.headline1 {
-  margin-bottom: 0.25rem;
-  color: var(--md-sys-color-on-primary-container);
+.header {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  white-space: nowrap;
+  color: var(--md-sys-color-primary);
 }
 
-.subhead1,
-.headline4 {
+.headline1 {
+  margin-bottom: 0;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--md-sys-color-secondary);
+
+  @media (max-width: 500px) {
+    font-size: var(--md-sys-typescale-headline3-size);
+    line-height: var(--md-sys-typescale-headline3-line-height);
+    letter-spacing: var(--md-sys-typescale-headline3-tracking);
+  }
+}
+
+.subtitle {
+  margin-top: 0.25rem;
   color: var(--md-sys-color-on-surface-variant);
+
+  @media (max-width: 500px) {
+    font-size: var(--md-sys-typescale-body2-size);
+    line-height: var(--md-sys-typescale-body2-line-height);
+    letter-spacing: var(--md-sys-typescale-body2-tracking);
+  }
 }
 
 .logo {
-  margin: 1rem 0 0;
-  width: 480px;
-  max-width: 100%;
+  display: block;
+  margin: 1rem 0;
+  width: 160px;
 }
 
 section {
   margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  padding-top: 0.25rem;
+  background-color: var(--md-sys-color-surface-variant);
+  color: var(--md-sys-color-on-surface-variant);
+  border-radius: 40px;
 }
 
 .contact-list li {
   margin: 1rem 0;
-}
-
-.person {
-  color: var(--md-sys-color-secondary);
 }

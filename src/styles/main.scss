@@ -1,3 +1,4 @@
+@use 'colors.scss';
 @use 'material-theme-builder-generated-styles.css';
 
 html,
@@ -8,32 +9,6 @@ body {
 body {
   margin: 0;
   font-family: 'Roboto', 'Helvetica Neue', sans-serif;
-  color: var(--md-sys-color-on-surface);
-  background-color: var(--md-sys-color-surface);
-}
-
-a {
-  position: relative;
-  text-decoration: none;
-  color: var(--md-sys-color-primary);
-
-  &:after {
-    position: absolute;
-    content: '';
-    top: -0.25rem;
-    left: -0.25rem;
-    width: calc(100% + 0.5rem);
-    height: calc(100% + 0.5rem);
-    background-color: var(--md-sys-color-primary-container);
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  &:hover:after {
-    opacity: 0.2;
-  }
-
-  &:focus:after {
-    opacity: 0.4;
-  }
+  color: var(--color-on-surface);
+  background-color: var(--color-surface);
 }
