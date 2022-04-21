@@ -5,8 +5,14 @@
   padding: 1em;
 }
 
-.title {
+.headline1 {
   margin-bottom: 0.25rem;
+  color: var(--md-sys-color-on-primary-container);
+}
+
+.subhead1,
+.headline4 {
+  color: var(--md-sys-color-on-surface-variant);
 }
 
 .logo {
@@ -21,4 +27,8 @@ section {
 
 .contact-list li {
   margin: 1rem 0;
+}
+
+.person {
+  color: var(--md-sys-color-secondary);
 }
