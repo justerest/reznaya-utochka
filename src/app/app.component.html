@@ -1,3 +1,11 @@
+<div class="container">
+  <div class="top-bar">
+    <button class="icon-button" (click)="toggleTheme()">
+      <i>{{ (isDarkTheme$ | async) ? 'brightness_low' : 'brightness_high' }}</i>
+    </button>
+  </div>
+</div>
+
 <header class="header">
   <div class="container">
     <div class="header__container">
@@ -6,7 +14,7 @@
         <p class="subtitle subhead1">Плыви вперёд, лети&nbsp;ввысь!</p>
       </div>
 
-      <app-logo class="logo" (click)="toggleTheme()"></app-logo>
+      <app-logo class="logo"></app-logo>
     </div>
   </div>
 </header>
@@ -24,37 +32,70 @@
       Присылайте нам фотографии и&nbsp;всё, что может пригодиться, а&nbsp;мы&nbsp;оценим возможности
       и&nbsp;сроки, чтобы превратить замысел в&nbsp;жизнь!
     </p>
+
+    <div class="cards">
+      <div class="card" *ngFor="let idea of ideas">
+        <img class="card__image" [src]="idea.imageUrl" />
+
+        <div class="card__content">
+          <p class="card__title subhead2">{{ idea.title }}</p>
+          <p class="card__subtitle caption">{{ idea.subtitle }}</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section>
     <h3 class="headline5">Контакты</h3>
 
-    <article class="contact">
-      <h4 class="subhead1">{{ contact.name }}</h4>
+    <div class="contacts">
+      <article class="contact">
+        <h4 class="subhead1">{{ contact.name }}</h4>
 
-      <ul class="contact-list">
-        <li>
-          <a href="tel:{{ contact.phone }}">
-            <i>phone</i>
-            <span>{{ contact.phone }}</span>
-          </a>
-        </li>
+        <ul class="contact-list">
+          <li>
+            <a href="tel:{{ contact.phone }}">
+              <i>phone</i>
+              <span>{{ contact.phone }}</span>
+            </a>
+          </li>
 
-        <li>
-          <a href="mailto:{{ contact.email }}">
-            <i>email</i>
-            <span>{{ contact.email }}</span>
-          </a>
-        </li>
+          <li>
+            <a href="mailto:{{ contact.email }}">
+              <i>email</i>
+              <span>{{ contact.email }}</span>
+            </a>
+          </li>
 
-        <li>
-          <a href="tg://resolve?domain={{ contact.telegramName }}">
-            <i>send</i>
-            <span>Telegram: {{ contact.telegramName }}</span>
-          </a>
-        </li>
-      </ul>
-    </article>
+          <li>
+            <a href="https://t.me/{{ contact.telegramUsername }}" target="_blank">
+              <i>send</i>
+              <span>Telegram: @{{ contact.telegramUsername }}</span>
+            </a>
+          </li>
+        </ul>
+      </article>
+
+      <article class="contact">
+        <h4 class="subhead1">Официальные каналы</h4>
+
+        <ul class="contact-list">
+          <li>
+            <a [href]="groups.vk" target="_blank">
+              <i>group</i>
+              <span>Группа ВК</span>
+            </a>
+          </li>
+
+          <li>
+            <a [href]="groups.telegramChannel" target="_blank">
+              <i>send</i>
+              <span>Канал в Telegram</span>
+            </a>
+          </li>
+        </ul>
+      </article>
+    </div>
   </section>
 </main>
 

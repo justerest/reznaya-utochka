@@ -1,6 +1,18 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
+
+export class StringLocalStorage<T extends string> {
+  constructor(private key: string) {}
+
+  getVal(): T | undefined {
+    return (globalThis.localStorage?.getItem(this.key) ?? undefined) as T;
+  }
+
+  setVal(val: T): void {
+    globalThis.localStorage?.setItem(this.key, val);
+  }
+}
 
 export enum Theme {
   Light = 'Light',
@@ -12,13 +24,25 @@ const ThemeClass: Record<Theme, string> = {
   [Theme.Dark]: 'dark-theme',
 };
 
+const THEME_LOCAL_STORAGE = new StringLocalStorage<Theme>('theme');
+
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
-  private theme$$ = new BehaviorSubject<Theme>(this.getPreferredTheme());
+  private readonly initialTheme = THEME_LOCAL_STORAGE.getVal() ?? this.getPreferredTheme();
+
+  private theme$$ = new BehaviorSubject<Theme>(this.initialTheme);
 
   theme$: Observable<Theme> = this.theme$$.asObservable();
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  isDarkTheme$: Observable<boolean> = this.theme$$.pipe(map((theme) => theme === Theme.Dark));
+
+  constructor(@Inject(DOCUMENT) private document: Document) {
+    if (this.initialTheme === Theme.Light) {
+      this.installLightThemeBodyClass();
+    } else {
+      this.installDarkThemeBodyClass();
+    }
+  }
 
   private getPreferredTheme(): Theme {
     return this.isDarkSchemePreferred() ? Theme.Dark : Theme.Light;
@@ -37,14 +61,24 @@ export class ThemeService {
   }
 
   private enableDark(): void {
-    this.document.body.classList.remove(ThemeClass.Light);
-    this.document.body.classList.add(ThemeClass.Dark);
+    this.installDarkThemeBodyClass();
+    THEME_LOCAL_STORAGE.setVal(Theme.Dark);
     this.theme$$.next(Theme.Dark);
   }
 
+  private installDarkThemeBodyClass() {
+    this.document.body.classList.remove(ThemeClass.Light);
+    this.document.body.classList.add(ThemeClass.Dark);
+  }
+
   private enableLight(): void {
+    this.installLightThemeBodyClass();
+    THEME_LOCAL_STORAGE.setVal(Theme.Light);
+    this.theme$$.next(Theme.Light);
+  }
+
+  private installLightThemeBodyClass() {
     this.document.body.classList.add(ThemeClass.Light);
     this.document.body.classList.remove(ThemeClass.Dark);
-    this.theme$$.next(Theme.Light);
   }
 }
