@@ -25,7 +25,7 @@ export class ThemeService {
   }
 
   private isDarkSchemePreferred(): boolean {
-    return this.document.defaultView?.matchMedia('(prefers-color-scheme: dark)').matches ?? false;
+    return this.document.defaultView?.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
   }
 
   toggle(): void {
