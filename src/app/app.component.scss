@@ -46,7 +46,7 @@
 }
 
 .description {
-  margin: 4rem 0;
+  margin: 3rem 0 4rem;
   color: var(--md-sys-color-primary);
 }
 
@@ -119,8 +119,8 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  height: 2rem;
   margin-left: auto;
   color: var(--md-sys-color-primary);
   border-radius: 50%;
@@ -188,8 +188,9 @@ section {
   width: 300px;
   height: 250px;
   background-color: var(--md-sys-color-outline);
-  border-radius: 30px;
+  border-radius: 2rem;
   overflow: hidden;
+  z-index: 1;
 
   &__image {
     position: absolute;
@@ -203,7 +204,7 @@ section {
     padding: 1rem;
     color: var(--md-sys-color-on-surface-variant);
     background-color: var(--md-sys-color-surface-variant);
-    z-index: 10;
+    z-index: 2;
   }
 
   &__title {

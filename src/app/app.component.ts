@@ -33,12 +33,12 @@ export class AppComponent {
       imageUrl:
         'https://na-dache.pro/uploads/posts/2021-08/1630195047_71-p-nalichniki-na-okna-v-derevyannom-dome-foto-88.jpg',
       title: 'Наличники',
-      subtitle: 'Уникальные наличники под ключ',
+      subtitle: 'Счастливое лицо вашего дома',
     },
     {
       imageUrl: 'https://i.pinimg.com/originals/2f/68/ba/2f68ba86f34244b4297808f61a560de5.jpg',
       title: 'Подставка-держатель',
-      subtitle: 'Можно собрать под себя',
+      subtitle: 'Можно собрать любой размер и формат',
     },
   ];
 
