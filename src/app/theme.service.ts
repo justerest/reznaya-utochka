@@ -37,9 +37,10 @@ export class ThemeService {
   isDarkTheme$: Observable<boolean> = this.theme$$.pipe(map((theme) => theme === Theme.Dark));
 
   constructor(@Inject(DOCUMENT) private document: Document) {
-    if (this.initialTheme === Theme.Light) {
+    const savedTheme = THEME_LOCAL_STORAGE.getVal();
+    if (savedTheme === Theme.Light) {
       this.installLightThemeBodyClass();
-    } else {
+    } else if (savedTheme === Theme.Dark) {
       this.installDarkThemeBodyClass();
     }
   }
